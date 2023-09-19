@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +19,17 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     //return view('welcome');
-    return view('login.login');
+    //return view('login.login');
+    return view('home.index');
 
 });
+
+
+Route::prefix('ventas')->group(function () {
+    require __DIR__ . '/ventas.php';
+});
+
+Route::prefix('articulos')->group(function () {
+    require __DIR__ . '/articulos.php';
+});
+
