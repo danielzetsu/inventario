@@ -28,7 +28,7 @@ $form = "form_".$unico_id ;?>
               <h5 class="card-title">Crear Productos</h5>
 
               <!-- Multi Columns Form -->
-              <form class="row g-3" action="{{url('articulos/store')}}"  method="POST"  id="{{$form}}" name="{{$form}}" >
+              <form class="row g-3" action="{{url('articulos')}}"  method="POST"  id="{{$form}}" name="{{$form}}" >
 
 
                                         {{ method_field('POST') }}
@@ -77,6 +77,116 @@ $form = "form_".$unico_id ;?>
       </div>
     </section>
 
+
+@if ($errors->any())
+    @if (count($errors) > 0)
+           @foreach ($errors->all() as $error)
+               <div class="alert alert-danger fade in">
+                   <ul>
+                        <li>{{ $error }}</li> 
+                   </ul>
+               </div>
+               <script type="text/javascript">
+                    jQuery(document).ready(function(){
+                            $.smallBox({
+                            title : "Alerta",
+                            content : "<i class='fa fa-clock-o'></i> <i>{{ $error }}</i>",
+                            color : "#C46A69",
+                            iconSmall : "fa fa-warning shake animated",
+                            timeout : 4000,
+                            sound_file: "../../../../SmartAdmin/sound/smallbox"
+                            });
+                        });
+                </script>
+           @endforeach
+    @endif
+@endif
+<script type="text/javascript">
+
+    @if ($errors->any())
+        @if (count($errors) > 0)
+               @foreach ($errors->all() as $error)
+                        jQuery.smallBox({
+                            title : "Alerta",
+                            content : "<i class='fa fa-clock-o'></i> <i>{{ $error }}</i>",
+                            color : "#C46A69",
+                            iconSmall : "fa fa-warning shake animated",
+                            timeout : 4000,
+                            sound_file: "../../../../SmartAdmin/sound/smallbox"
+                        });
+               @endforeach
+        @endif
+    @endif
+</script>
+
+@if(isset($failed))
+    <?php
+        foreach (array_keys($failed) as $key ) {
+            echo  "<script>jQuery('#".$key."').css('border-bottom-color','rgb(241, 75, 75)');</script>"."\n";
+        }
+
+     ?>
+    
+@endif
+@if( isset($msg) )
+    @if( count($msg) > 0 )
+        @foreach ($msg as $mensaje)
+            <div class="alert alert-info fade in">
+                <ul>
+                    <li><i class="fa-fw fa fa-info"></i> <strong>Informacion: </strong> {{ $mensaje }}</li>
+                </ul>
+            </div> 
+            <script type="text/javascript">
+                jQuery(document).ready(function(){
+                        $.smallBox({
+                        title : "Alerta",
+                        content : "<i class='fa fa-clock-o'></i> <i>{{ $mensaje }}</i>",
+                        color : @if( $guardar==true )"#63b04f",@else  "#C46A69", @endif
+                        iconSmall : "fa fa-warning shake animated",
+                        timeout : 4000,
+                        sound_file: "../../../../SmartAdmin/sound/smallbox"
+                        });
+                    });
+            </script>
+        @endforeach
+    @endif
+@endif
+
+@if( isset($guardar) )
+@if( $guardar==true )
+<script type="text/javascript">
+
+    jQuery.bigBox({
+            title : "Mensaje Satisfactorio",
+            content :"Felicidades Formulario Sagrilaft Ingresado Satisfactoriamente",   
+            color : "#739E73",
+            timeout: 9000,
+            icon : "fa fa-check",
+            number : "1",
+            sound_file: "../../../../SmartAdmin/sound/smallbox"
+        }, function() {
+        closedthis();
+    }); 
+
+    url="{{ url('consultas/sagrilaft/pdf').'/'.$encabezado->id }}";
+    window.open(url);
+    @if($encabezado->tipo_persona=='juridica')
+        url="{{ url('consultas/sagrilaft')}}?nit_pj={{trim($encabezado->nit)}}";
+    @else
+        url="{{ url('consultas/sagrilaft')}}?nit={{trim($encabezado->nit)}}";
+    @endif
+    jQuery(location).attr('href',url);
+
+
+    //borrar_locales('{{$encabezado->id}}','{{$encabezado->prefijo}}','{{$encabezado->consecutivo}}');
+    //url="{{ url('ventas/solicitud_credito/edit')}}/{{$encabezado->id}}";
+    //jQuery(location).attr('href',url);
+
+</script>
+
+
+@endif
+@endif
  
 
 @if ($errors->any())
@@ -91,6 +201,5 @@ $form = "form_".$unico_id ;?>
     @endif
 @endif
  
-
 
 @stop

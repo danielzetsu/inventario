@@ -46,7 +46,7 @@ class ArticulosController extends Controller
     public function store(Request $request)
     {
 
-        $msg = array();
+        /*$msg = array();
         $messages = [ 
 
             'nombre.required'         =>  'el Campo Promociones ...es Obligatorio',
@@ -79,18 +79,19 @@ class ArticulosController extends Controller
                 //dd($failed);
                 $msg[] = "Error Valide los datos ingresados";
                 //dd($validator);
-                return redirect('articulos?msg=Error Valide los datos ingresados')
+
+                //$this->validate($request,[]);
+                return redirect('articulos')
+                //return view('articulos.index')
                             ->withErrors($validator)
                             ->with("msg",$msg)
                             ->with("guardar",false)
                             ->with("failed",$failed);
-            }
+            }*/
         // --------
 
-            $factura = Articulos::where("factura",$request->factura)->first();
-
-            $Acta= ControlPromociones::where("id_acta",$request->idacta)->first();
-
+            $db = \DB::table('inventario.dbo.articulos')->get();
+            dd($db);
             if ($factura != "") {
                 $msg[] = "Ya existe una Factura ingresada";
 
