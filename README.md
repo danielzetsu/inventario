@@ -15,12 +15,21 @@ php artisan migrate
 
 
 1.- Obtener una copia del repositorio y agregarlo a tu servidor, ya sea en tu máquina local o en un servidor en línea.
-2.- Configura la base de datos incluida en el archivo inventario/schema.sql, tienes la opción de hacerlo a través de 
-	Workbench o mediante comandos en la terminal
-3.- Modificar si se está trabajando con apache En el php.ini hablilitar los siguientes controladores
+
+2.- Modificar si se está trabajando con apache En el php.ini hablilitar los siguientes controladores
 	extension=pdo_odbc
 	extension=pdo_pgsql
 	extension=pgsql
+3.- Configura la base de datos incluida en el archivo .env en la ruta inventario\.env
+	Se sugiere de esta forma 
+
+	DB_CONNECTION=pgsql
+	DB_HOST=127.0.0.1
+	DB_PORT=3232
+	DB_DATABASE=inventario
+	DB_USERNAME=postgres
+	DB_PASSWORD=123456789
+	
 4.- colocar en marcha el servidor de laravel desde la terminal con el siguinte comando
 	php artisan serve
 
