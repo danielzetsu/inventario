@@ -1,25 +1,14 @@
 # inventario
 sistema de inventario
 
-php artisan make:migration create_productos_tables
-(inventario\database\migrations\2023_09_20_134008_create_productos_tables.php)
-php artisan migrate
-
-si se está trabajando con apache En el php.ini hablilitar los siguientes controladores
-extension=pdo_odbc
-extension=pdo_pgsql
-extension=pgsql
-
-ejecutra la siguinete migracion 
-php artisan migrate
-
 
 1.- Obtener una copia del repositorio y agregarlo a tu servidor, ya sea en tu máquina local o en un servidor en línea.
 
-2.- Modificar si se está trabajando con apache En el php.ini hablilitar los siguientes controladores
+2.- Modificar si se está trabajando con apache En el php.ini habilitar los siguientes controladores
 	extension=pdo_odbc
 	extension=pdo_pgsql
 	extension=pgsql
+
 3.- Configura la base de datos incluida en el archivo .env en la ruta inventario\.env
 	Se sugiere de esta forma 
 
@@ -30,13 +19,15 @@ php artisan migrate
 	DB_USERNAME=postgres
 	DB_PASSWORD=123456789
 	
-4.- colocar en marcha el servidor de laravel desde la terminal con el siguinte comando
+4.- colocar en marcha el servidor de laravel desde la terminal con el siguiente comando
 	php artisan serve
 
 
-4.- ejecutar las migraciones
+5.- ejecutar las migraciones
 	php artisan migrate
-	Acceder direccion http://localhost/inventio/
+	que se encuentra en 
+	(inventario\database\migrations\2023_09_20_134008_create_productos_tables.php)
+	Acceder dirección:  http://localhost/inventio/
 
 
 
