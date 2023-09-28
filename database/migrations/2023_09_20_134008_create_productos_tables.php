@@ -40,8 +40,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //Schema::dropIfExists('productos');
-        //Schema::dropIfExists('ventas_productos');
+        Schema::dropIfExists('productos');
+        Schema::dropIfExists('ventas_productos');
     }
 
 

@@ -51,10 +51,11 @@ class ArticulosController extends Controller
                     'precio'    =>'required',
                     'peso'  =>'required',
                     'categoria'     =>'required',
-                    'stock'     =>'required',
+                    'stock'     =>'required|numeric|min: 0',
                     'fecha'     =>'required' 
 
             ],$messages);
+            
 
             if ($validator->fails()) { 
                 $failed = $validator->failed();
@@ -127,7 +128,7 @@ class ArticulosController extends Controller
                     'precio'    =>'required',
                     'peso'  =>'required',
                     'categoria'     =>'required',
-                    'stock'     =>'required',
+                    'stock'     =>'required|numeric|min: 0',
                     'fecha'     =>'required' 
 
             ],$messages);
